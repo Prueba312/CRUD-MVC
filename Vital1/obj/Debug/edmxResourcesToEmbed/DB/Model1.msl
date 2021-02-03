@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="vital1ModelStoreContainer" CdmEntityContainer="vital1Entities">
+    <EntitySetMapping Name="Historial">
+      <EntityTypeMapping TypeName="vital1Model.Historial">
+        <MappingFragment StoreEntitySet="Historial">
+          <ScalarProperty Name="Hist_Fecha" ColumnName="Hist_Fecha" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Hist_Cant" ColumnName="Hist_Cant" />
+          <ScalarProperty Name="Hist_ID" ColumnName="Hist_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="vital1Model.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="Prod_estado" ColumnName="Prod_estado" />
+          <ScalarProperty Name="Prod_Cant" ColumnName="Prod_Cant" />
+          <ScalarProperty Name="Prod_Desk" ColumnName="Prod_Desk" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

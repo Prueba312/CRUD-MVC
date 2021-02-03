@@ -1,0 +1,29 @@
+﻿@model List<Vital1.Models.ViewModels.ListaProductoViewModels>
+@{ ViewBag.Title = "Productos Historico"; }
+
+<h2>@ViewBag.Title</h2>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.Prod_Desk</td>
+                    <td>@oElemento.Cant_total</td>
+                    <td>@oElemento.Fecha</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>
+

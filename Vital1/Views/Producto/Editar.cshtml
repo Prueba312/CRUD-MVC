@@ -1,0 +1,39 @@
+﻿@model Vital1.Models.ViewModels.ProductoViewModels
+
+@{ ViewBag.Title = "Editar Producto"; }
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Editar", "Producto", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+<div class="row">
+    <div class="col-md-12">
+        @Html.HiddenFor(d => d.Prod_Id)
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(d => d.Prod_Desk, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.Prod_Desk, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Prod_Cant, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.Prod_Cant, new { @class = "form-control", type = "number" })
+            </div>
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+        </div>
+
+
+    </div>
+</div>}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

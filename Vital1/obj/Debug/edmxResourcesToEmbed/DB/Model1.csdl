@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vital1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="vital1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Historial" EntityType="vital1Model.Historial" />
+    <EntitySet Name="Producto" EntityType="vital1Model.Producto" />
+    <AssociationSet Name="FK__Historial__Prod___1273C1CD" Association="vital1Model.FK__Historial__Prod___1273C1CD">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Historial" EntitySet="Historial" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Historial">
+    <Key>
+      <PropertyRef Name="Hist_ID" />
+    </Key>
+    <Property Name="Hist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Hist_Cant" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="Hist_Fecha" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Producto" Relationship="vital1Model.FK__Historial__Prod___1273C1CD" FromRole="Historial" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Prod_Id" />
+    </Key>
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prod_Desk" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Prod_Cant" Type="Int32" Nullable="false" />
+    <Property Name="Prod_estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Historial" Relationship="vital1Model.FK__Historial__Prod___1273C1CD" FromRole="Producto" ToRole="Historial" />
+  </EntityType>
+  <Association Name="FK__Historial__Prod___1273C1CD">
+    <End Type="vital1Model.Producto" Role="Producto" Multiplicity="1" />
+    <End Type="vital1Model.Historial" Role="Historial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Prod_Id" />
+      </Principal>
+      <Dependent Role="Historial">
+        <PropertyRef Name="Prod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

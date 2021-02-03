@@ -1,0 +1,39 @@
+﻿@model List<Vital1.Models.ViewModels.ListaProductoViewModels>
+@{ ViewBag.Title = "Productos existentes"; }
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row" style="text-align:right;padding:5px;">
+    <a href="~/Producto/Nuevo" class="btn btn-primary">Nuevo</a>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th></th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                if (!oElemento.Prod_estado)
+                {
+                <tr>
+                    <td>@oElemento.Prod_Id</td>
+                    <td>@oElemento.Prod_Desk</td>
+                    <td>@oElemento.Prod_Cant</td>
+                    <td>
+                        <a class="btn btn-default" href="~/Producto/Historico/@oElemento.Prod_Id">Historico</a>
+                        <a class="btn btn-default" href="~/Producto/Agregar/@oElemento.Prod_Id">Agregar</a>
+                        <a class="btn btn-default" href="~/Producto/Editar/@oElemento.Prod_Id">Editar</a>
+                        <a class="btn btn-danger" href="~/Producto/Eliminar/@oElemento.Prod_Id">Eliminar</a>
+                    </td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
+
+</div>
+

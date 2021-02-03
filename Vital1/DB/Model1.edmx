@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="vital1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Historial">
+          <Key>
+            <PropertyRef Name="Hist_ID" />
+          </Key>
+          <Property Name="Hist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hist_Cant" Type="int" Nullable="false" />
+          <Property Name="Prod_Id" Type="int" Nullable="false" />
+          <Property Name="Hist_Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Prod_Id" />
+          </Key>
+          <Property Name="Prod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prod_Desk" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Prod_Cant" Type="int" Nullable="false" />
+          <Property Name="Prod_estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Historial__Prod___1273C1CD">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Historial" Type="Self.Historial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Prod_Id" />
+            </Principal>
+            <Dependent Role="Historial">
+              <PropertyRef Name="Prod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vital1ModelStoreContainer">
+          <EntitySet Name="Historial" EntityType="Self.Historial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Historial__Prod___1273C1CD" Association="Self.FK__Historial__Prod___1273C1CD">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Historial" EntitySet="Historial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vital1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="vital1Entities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Historial" EntityType="vital1Model.Historial" />
+          <EntitySet Name="Producto" EntityType="vital1Model.Producto" />
+          <AssociationSet Name="FK__Historial__Prod___1273C1CD" Association="vital1Model.FK__Historial__Prod___1273C1CD">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Historial" EntitySet="Historial" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Historial">
+          <Key>
+            <PropertyRef Name="Hist_ID" />
+          </Key>
+          <Property Name="Hist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hist_Cant" Type="Int32" Nullable="false" />
+          <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+          <Property Name="Hist_Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Producto" Relationship="vital1Model.FK__Historial__Prod___1273C1CD" FromRole="Historial" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Prod_Id" />
+          </Key>
+          <Property Name="Prod_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prod_Desk" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Prod_Cant" Type="Int32" Nullable="false" />
+          <Property Name="Prod_estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Historial" Relationship="vital1Model.FK__Historial__Prod___1273C1CD" FromRole="Producto" ToRole="Historial" />
+        </EntityType>
+        <Association Name="FK__Historial__Prod___1273C1CD">
+          <End Type="vital1Model.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="vital1Model.Historial" Role="Historial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Prod_Id" />
+            </Principal>
+            <Dependent Role="Historial">
+              <PropertyRef Name="Prod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vital1ModelStoreContainer" CdmEntityContainer="vital1Entities" >
+          <EntitySetMapping Name="Historial">
+            <EntityTypeMapping TypeName="vital1Model.Historial">
+              <MappingFragment StoreEntitySet="Historial">
+                <ScalarProperty Name="Hist_Fecha" ColumnName="Hist_Fecha" />
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Hist_Cant" ColumnName="Hist_Cant" />
+                <ScalarProperty Name="Hist_ID" ColumnName="Hist_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="vital1Model.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Prod_estado" ColumnName="Prod_estado" />
+                <ScalarProperty Name="Prod_Cant" ColumnName="Prod_Cant" />
+                <ScalarProperty Name="Prod_Desk" ColumnName="Prod_Desk" />
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

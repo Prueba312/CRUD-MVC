@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vital1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Historial">
+    <Key>
+      <PropertyRef Name="Hist_ID" />
+    </Key>
+    <Property Name="Hist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hist_Cant" Type="int" Nullable="false" />
+    <Property Name="Prod_Id" Type="int" Nullable="false" />
+    <Property Name="Hist_Fecha" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Prod_Id" />
+    </Key>
+    <Property Name="Prod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prod_Desk" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Prod_Cant" Type="int" Nullable="false" />
+    <Property Name="Prod_estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Historial__Prod___1273C1CD">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Historial" Type="Self.Historial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Prod_Id" />
+      </Principal>
+      <Dependent Role="Historial">
+        <PropertyRef Name="Prod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vital1ModelStoreContainer">
+    <EntitySet Name="Historial" EntityType="Self.Historial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Historial__Prod___1273C1CD" Association="Self.FK__Historial__Prod___1273C1CD">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Historial" EntitySet="Historial" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
